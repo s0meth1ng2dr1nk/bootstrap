@@ -1,5 +1,5 @@
 #!/bin/bash
-# export PASSWORD='' && sudo systemctl disable --now dnf-automatic.timer && sudo dnf install -y git && sudo git clone -b main https://github.com/s0meth1ng2dr1nk/bootstrap.git /opt/bootstrap && sudo --preserve-env=PASSWORD bash /opt/bootstrap/bootstrap.sh
+# export PASSWORD='' && sudo systemctl disable --now dnf-automatic.timer && sudo dnf install -y --setopt=install_weak_deps=False git && sudo git clone -b main https://github.com/s0meth1ng2dr1nk/bootstrap.git /opt/bootstrap && sudo --preserve-env=PASSWORD bash /opt/bootstrap/bootstrap.sh
 # openssl enc -aes-256-cbc -salt -pbkdf2 -pass env:PASSWORD -in secret.env | base64 -w 0 > secret.enc.b64
 set -euo pipefail
 
@@ -7,7 +7,19 @@ BASE=$(cd $(dirname "${BASH_SOURCE[0]:-0}") && pwd -P)
 cd "${BASE}"
 
 init() {
-  dnf install -y openssl
+  if [ ! -f /swapfile ]; then
+    fallocate -l 4G /swapfile
+    chmod 600 /swapfile
+    mkswap /swapfile
+  fi
+
+  if ! swapon --show=NAME | grep -qxF /swapfile; then
+    swapon /swapfile
+  fi
+
+  grep -qxF '/swapfile none swap sw 0 0' /etc/fstab || echo '/swapfile none swap sw 0 0' >> /etc/fstab
+
+  dnf install -y --setopt=install_weak_deps=False openssl
   base64 -d config/secret.enc.b64 | openssl enc -d -aes-256-cbc -pbkdf2 -pass env:PASSWORD -out config/secret.env
   echo "export PASSWORD=${PASSWORD}" >> config/secret.env
   (
