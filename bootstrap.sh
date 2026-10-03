@@ -1,5 +1,5 @@
 #!/bin/bash
-# export PASSWORD='' && sudo --preserve-env=PASSWORD nohup bash -c 'systemctl disable --now dnf-automatic.timer && dnf install -y --setopt=install_weak_deps=False git && git clone -b main https://github.com/s0meth1ng2dr1nk/bootstrap.git /opt/bootstrap && bash /opt/bootstrap/bootstrap.sh' > /tmp/bootstrap.log 2>&1 &
+# export PASSWORD='' && sudo --preserve-env=PASSWORD nohup bash -c 'systemctl disable --now dnf-automatic.timer && dnf install -y --setopt=install_weak_deps=False git && rm -rf /opt/bootstrap && git clone -b main https://github.com/s0meth1ng2dr1nk/bootstrap.git /opt/bootstrap && bash /opt/bootstrap/bootstrap.sh' > /tmp/bootstrap.log 2>&1 &
 # openssl enc -aes-256-cbc -salt -pbkdf2 -pass env:PASSWORD -in secret.env | base64 -w 0 > secret.enc.b64
 set -euo pipefail
 
