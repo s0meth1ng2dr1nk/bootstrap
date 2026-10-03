@@ -10,6 +10,7 @@ REPO='https://github.com/s0meth1ng2dr1nk/bootstrap'
 BRANCH='main'
 
 init() {
+  dnf install -y openssl
   curl -fsSL "${REPO}/archive/refs/heads/${BRANCH}.tar.gz" | tar -xz --strip-components=1
   base64 -d config/secret.enc.b64 | openssl enc -d -aes-256-cbc -pbkdf2 -pass env:PASSWORD -out config/secret.env
   echo "export PASSWORD=${PASSWORD}" >> config/secret.env
