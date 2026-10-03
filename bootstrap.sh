@@ -1,5 +1,5 @@
 #!/bin/bash
-# export PASSWORD='' && curl -fsSL https://raw.githubusercontent.com/s0meth1ng2dr1nk/bootstrap/main/bootstrap.sh | sudo --preserve-env=PASSWORD bash
+# export PASSWORD='' && curl -fsSL "https://raw.githubusercontent.com/s0meth1ng2dr1nk/bootstrap/main/bootstrap.sh?t=$(date +%s)" | sudo --preserve-env=PASSWORD bash
 # openssl enc -aes-256-cbc -salt -pbkdf2 -pass env:PASSWORD -in secret.env | base64 -w 0 > secret.enc.b64
 set -euo pipefail
 
