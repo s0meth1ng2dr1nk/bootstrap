@@ -1,4 +1,4 @@
 #!/bin/bash
 set -euo pipefail
 
-dnf update -y --setopt=install_weak_deps=False 
+dnf update -y --setopt=install_weak_deps=False --exclude='kernel*'
