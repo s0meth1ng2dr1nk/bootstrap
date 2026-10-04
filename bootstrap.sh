@@ -26,7 +26,7 @@ init() {
   curl -sSLO $(curl -s https://api.github.com/repos/getsops/sops/releases/latest | grep "browser_download_url.*x86_64.rpm" | cut -d : -f 2,3 | tr -d \")
   dnf localinstall -y sops-*.x86_64.rpm
   rm -f sops-*.x86_64.rpm
-  sops -d -o config/secret.env config/secret.sops.env
+  sops -d config/secret.sops.env > config/secret.env
 
   echo "export SOPS_AGE_KEY_FILE=${SOPS_AGE_KEY_FILE}" >> config/secret.env
   echo "export PASSWORD=${PASSWORD}" >> config/secret.env
