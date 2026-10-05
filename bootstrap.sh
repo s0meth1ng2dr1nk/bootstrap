@@ -34,8 +34,8 @@ init() {
 
   (
     cd script
-    ln -nfs ../config/common.env
-    ln -nfs ../config/secret.env
+    ln -nfs ${BASE}/config/common.env
+    ln -nfs ${BASE}/config/secret.env
   )
 }
 
