@@ -47,6 +47,7 @@ init() {
 init
 
 cd script
+bash selinux.sh
 
 bash update.sh
 bash git.sh
@@ -62,4 +63,5 @@ bash cleanup.sh
 bash ssh.sh
 
 
-bash selinux.sh
+echo
+echo "done"
