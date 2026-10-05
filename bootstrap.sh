@@ -61,5 +61,5 @@ bash cleanup.sh
 
 bash ssh.sh
 
-echo
-echo "done"
+
+bash selinux.sh
