@@ -1,4 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -euox pipefail
 
-dnf install -y --setopt=install_weak_deps=False python3 python3-pip
+dnf install -y --setopt=install_weak_deps=False python3
+curl -LsSf https://astral.sh/uv/install.sh | sh

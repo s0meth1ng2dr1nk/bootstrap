@@ -1,4 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -euox pipefail
 
-dnf install -y --setopt=install_weak_deps=False nodejs npm
+dnf install -y --setopt=install_weak_deps=False nodejs
+curl -fsSL https://get.pnpm.io/install.sh | sh -

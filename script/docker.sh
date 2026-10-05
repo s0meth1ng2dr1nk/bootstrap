@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -euox pipefail
 
 dnf install -y --setopt=install_weak_deps=False "kernel-modules-extra-$(uname -r)"
 modprobe br_netfilter

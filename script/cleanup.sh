@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -euox pipefail
 
 dnf clean all
 rm -rf /var/cache/dnf/* /var/cache/yum/*

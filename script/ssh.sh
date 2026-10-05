@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -euox pipefail
 
 BASE=$(cd $(dirname "${BASH_SOURCE[0]:-0}") && pwd -P)
 cd "${BASE}"
