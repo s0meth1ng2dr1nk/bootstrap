@@ -30,7 +30,12 @@ init() {
 
   echo "export SOPS_AGE_KEY_FILE=${SOPS_AGE_KEY_FILE}" >> config/secret.env
   echo "export PASSWORD=${PASSWORD}" >> config/secret.env
-  sed -i -e '/\/config\/secret\.env/d' -e "$ a [ -f ${BASE}/config/secret.env ] && source ${BASE}/config/secret.env" /etc/profile
+
+  if grep -Fq 'config/secret.env' /etc/profile; then
+    sed -i -E "s@.*config/secret\.env.*@[ -f ${BASE}/config/secret.env ] \&\& source ${BASE}/config/secret.env@" /etc/profile
+  else
+    echo "[ -f ${BASE}/config/secret.env ] && source ${BASE}/config/secret.env" >> /etc/profile
+  fi
 
   (
     cd script
